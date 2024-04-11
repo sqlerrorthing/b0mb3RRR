@@ -29,9 +29,12 @@ public class ServiceManager {
 
     public void add()
     {
+        this.services.add(new Masterit());
+        this.services.add(new Compshop());
+        this.services.add(new Vkontakte());
         this.services.add(new DokapizzaPhone());
         this.services.add(new KamakuraPhone());
-        this.services.add(new Farfor());
+        // this.services.add(new Farfor()); (on update)
         this.services.add(new Mailru());
         this.services.add(new Eldorado());
         this.services.add(new Sms4b());
