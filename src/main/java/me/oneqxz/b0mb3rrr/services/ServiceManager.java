@@ -29,7 +29,8 @@ public class ServiceManager {
 
     public void add()
     {
-        this.services.add(new Kamakura());
+        this.services.add(new DokapizzaPhone());
+        this.services.add(new KamakuraPhone());
         this.services.add(new Farfor());
         this.services.add(new Mailru());
         this.services.add(new Eldorado());
