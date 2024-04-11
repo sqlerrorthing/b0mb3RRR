@@ -29,6 +29,7 @@ public class ServiceManager {
 
     public void add()
     {
+        this.services.add(new Mailru());
         this.services.add(new Eldorado());
         this.services.add(new Sms4b());
         this.services.add(new Sportmaster());
