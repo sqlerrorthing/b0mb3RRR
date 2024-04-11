@@ -29,6 +29,7 @@ public class ServiceManager {
 
     public void add()
     {
+        this.services.add(new Farpost());
         this.services.add(new Masterit());
         this.services.add(new Compshop());
         this.services.add(new Vkontakte());
