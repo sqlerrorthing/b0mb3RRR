@@ -29,29 +29,30 @@ public class ServiceManager {
 
     public void add()
     {
-        this.services.add(new Mailru());
-        this.services.add(new Eldorado());
-        this.services.add(new Sms4b());
-        this.services.add(new Sportmaster());
-        this.services.add(new Sushivesla());
-        this.services.add(new Bluefin());
-        this.services.add(new Burgerkingrus());
-        this.services.add(new Cian());
-        this.services.add(new Citilink());
-        this.services.add(new DnsShop());
-        this.services.add(new Findclone());
-        this.services.add(new GazpromBank());
-        this.services.add(new ICQ());
-        this.services.add(new IvI());
-        this.services.add(new MosPizza());
-        this.services.add(new Odnoklassniki());
-        this.services.add(new Pomodoro());
-        this.services.add(new ProSushi());
-        this.services.add(new RabotaRu());
-        this.services.add(new RichFamily());
-        this.services.add(new Sayoris());
-        this.services.add(new Sushirolla());
-        this.services.add(new Tinkoff());
+        this.services.add(new Farfor());
+//        this.services.add(new Mailru());
+//        this.services.add(new Eldorado());
+//        this.services.add(new Sms4b());
+//        this.services.add(new Sportmaster());
+//        this.services.add(new Sushivesla());
+//        this.services.add(new Bluefin());
+//        this.services.add(new Burgerkingrus());
+//        this.services.add(new Cian());
+//        this.services.add(new Citilink());
+//        this.services.add(new DnsShop());
+//        this.services.add(new Findclone());
+//        this.services.add(new GazpromBank());
+//        this.services.add(new ICQ());
+//        this.services.add(new IvI());
+//        this.services.add(new MosPizza());
+//        this.services.add(new Odnoklassniki());
+//        this.services.add(new Pomodoro());
+//        this.services.add(new ProSushi());
+//        this.services.add(new RabotaRu());
+//        this.services.add(new RichFamily());
+//        this.services.add(new Sayoris());
+//        this.services.add(new Sushirolla());
+//        this.services.add(new Tinkoff());
     }
 
     public void run()
