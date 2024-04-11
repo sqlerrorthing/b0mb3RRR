@@ -19,7 +19,7 @@ public class Main {
              | |__   /  \\   _ __   | |__  |__ / | _ \\ | _ \\ | _ \\
              | '_ \\ | () | | '  \\  | '_ \\  |_ \\ |   / |   / |   /
              |_.__/  \\__/  |_|_|_| |_.__/ |___/ |_|_\\ |_|_\\ |_|_\\
-            \{StringPosition.center(STR."By 1qxz, Version \{version}", "                                                     ")}
+            \{StringPosition.center(STR."By 1qxz, TERETERY. Version \{version}", "                                                     ")}
             """;
 
     public static void main(String[] args) {
