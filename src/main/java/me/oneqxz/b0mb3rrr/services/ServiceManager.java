@@ -19,14 +19,20 @@ public class ServiceManager {
 
     public ServiceManager(Config config) {
         this.config = config;
-        log.info(STR."Запускаю спам на номер \{config.getPhone()}...");
+        log.info(STR."Запускаю спам на номер +\{config.getPhone()}");
 
         this.add();
+        log.info(STR."Добавлено \{services.size()} сервисов.");
+
         this.run();
     }
 
     public void add()
     {
+        this.services.add(new Eldorado());
+        this.services.add(new Sms4b());
+        this.services.add(new Sportmaster());
+        this.services.add(new Sushivesla());
         this.services.add(new Bluefin());
         this.services.add(new Burgerkingrus());
         this.services.add(new Cian());

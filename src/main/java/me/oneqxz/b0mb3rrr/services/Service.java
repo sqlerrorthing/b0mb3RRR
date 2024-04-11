@@ -9,6 +9,8 @@ import me.oneqxz.b0mb3rrr.data.Phone;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -29,7 +31,7 @@ public abstract class Service implements IService {
 
     public String getEmail()
     {
-        return faker.internet().emailAddress();
+        return STR."\{RandomStringUtils.random(3, "ABCDEFGHIKLMNOPQRSTVXYZ")}\{RandomStringUtils.random(3, "abcdefghiklmnopqrstvxyz")}\{System.currentTimeMillis() * 1000}@gmail.com";
     }
 
     public void execute(Config config)
@@ -41,7 +43,7 @@ public abstract class Service implements IService {
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful())
-                log.error(STR."Неверный код состояния для сервиса \{this.getServiceName()} \{response.code()}\{config.isDebug() ? STR.": \{response.body().string()}" : ""}");
+                log.error(STR."Неверный код состояния для сервиса \{this.getServiceName()} \{response.code()}\{config.isDebug() ? STR.": \{response.body().string().replace("\n", " ")}" : ""}");
 
             else
                 log.info(STR."Сервис \{this.getServiceName()} отправил код успешно");

@@ -12,8 +12,8 @@ import java.nio.charset.Charset;
 @Log4j2
 public class Main {
 
-    private static String version = "1.0.0";
-    private static String banner = STR."""
+    private static final String version = "1.0.0";
+    private static final String banner = STR."""
 
               _       __            _      ____  ___   ___   ___\s
              | |__   /  \\   _ __   | |__  |__ / | _ \\ | _ \\ | _ \\

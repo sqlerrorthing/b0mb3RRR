@@ -29,6 +29,6 @@ public class ProSushi extends Service {
 
     @Override
     public String getServiceName() {
-        return "";
+        return "ProSushi";
     }
 }
