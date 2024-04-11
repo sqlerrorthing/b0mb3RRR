@@ -31,7 +31,12 @@ public abstract class Service implements IService {
 
     public String getEmail()
     {
-        return STR."\{RandomStringUtils.random(3, "ABCDEFGHIKLMNOPQRSTVXYZ")}\{RandomStringUtils.random(3, "abcdefghiklmnopqrstvxyz")}\{System.currentTimeMillis() * 1000}@gmail.com";
+        return STR."\{this.getLogin()}@gmail.com";
+    }
+
+    public String getLogin()
+    {
+        return STR."\{RandomStringUtils.random(3, "ABCDEFGHIKLMNOPQRSTVXYZ")}\{RandomStringUtils.random(3, "abcdefghiklmnopqrstvxyz")}\{System.currentTimeMillis() * 1000}";
     }
 
     public void execute(Config config)
