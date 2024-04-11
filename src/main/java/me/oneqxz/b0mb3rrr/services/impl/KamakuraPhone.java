@@ -6,7 +6,7 @@ import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 
-public class Kamakura extends Service {
+public class KamakuraPhone extends Service {
     @Override
     public Request.Builder buildRequest(Phone phone) {
         RequestBody formBody = new FormBody.Builder()
@@ -43,6 +43,6 @@ public class Kamakura extends Service {
 
     @Override
     public String getServiceName() {
-        return "Kamakura";
+        return "KamakuraPhone";
     }
 }
