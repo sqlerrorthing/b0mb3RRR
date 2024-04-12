@@ -11,6 +11,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.net.Proxy;
@@ -46,8 +47,16 @@ public abstract class Service implements IService {
                 .addHeader("X-Requested-With", "XMLHttpRequest")
                 .build();
 
+        @Nullable Proxy proxy = null;
+        if(config.getProxys() != null)
+        {
+            me.oneqxz.b0mb3rrr.data.proxy.Proxy s = config.getProxys().getRandomProxy();
+            if(s != null)
+                proxy = s.toJavaProxy();
+        }
+
         OkHttpClient client = new OkHttpClient.Builder()
-                .proxy(config.getProxys() == null ? null : config.getProxys().getRandomProxy().toJavaProxy())
+                .proxy(proxy)
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
