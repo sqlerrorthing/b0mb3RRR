@@ -13,6 +13,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.net.Proxy;
 import java.util.Locale;
 
 import static java.lang.StringTemplate.STR;
@@ -22,7 +23,6 @@ import static java.lang.StringTemplate.STR;
 public abstract class Service implements IService {
 
     private final Faker faker = new Faker(Locale.of("RU"));
-    private final OkHttpClient client = new OkHttpClient();
 
     public String getName()
     {
@@ -44,6 +44,10 @@ public abstract class Service implements IService {
         Request request = this.buildRequest(config.getPhone())
                 .addHeader("User-Agent", faker.internet().userAgentAny())
                 .addHeader("X-Requested-With", "XMLHttpRequest")
+                .build();
+
+        OkHttpClient client = new OkHttpClient.Builder()
+                .proxy(config.getProxys() == null ? null : config.getProxys().getRandomProxy().toJavaProxy())
                 .build();
 
         try (Response response = client.newCall(request).execute()) {

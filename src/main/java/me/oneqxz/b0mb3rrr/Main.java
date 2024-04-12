@@ -2,12 +2,12 @@ package me.oneqxz.b0mb3rrr;
 
 import lombok.extern.log4j.Log4j2;
 import me.oneqxz.b0mb3rrr.data.Phone;
+import me.oneqxz.b0mb3rrr.data.proxy.Proxys;
 import me.oneqxz.b0mb3rrr.services.ServiceManager;
 import me.oneqxz.b0mb3rrr.utils.StringPosition;
 import org.apache.commons.cli.*;
 
 import java.io.File;
-import java.nio.charset.Charset;
 
 @Log4j2
 public class Main {
@@ -33,6 +33,13 @@ public class Main {
                 .argName("Номер телефона для спама")
                 .required()
                 .desc("Номер телефона на который будет приходить спам")
+                .build());
+
+        options.addOption(Option.builder("pr")
+                .longOpt("proxy")
+                .hasArg()
+                .argName("Путь к файлу с проксями")
+                .desc("Если вы хотите что бы запросы проходили через прокси")
                 .build());
 
         options.addOption(Option.builder("d")
@@ -64,6 +71,7 @@ public class Main {
             String phone = cmd.getOptionValue("p");
             String delay = cmd.getOptionValue("d");
             String cycles = cmd.getOptionValue("c");
+            String proxy = cmd.getOptionValue("pr");
             builder.debug(cmd.hasOption("dbg"));
 
             if(phone == null || phone.isEmpty())
@@ -84,6 +92,19 @@ public class Main {
                 builder.cycles(-1);
             else
                 builder.cycles(Integer.parseInt(cycles));
+
+            if(proxy != null && !proxy.isEmpty())
+            {
+                File filepath = new File(proxy);
+                if(!filepath.exists() || filepath.isDirectory())
+                {
+                    log.fatal("Файл с прокси не найден!");
+                    System.exit(-1);
+                    return;
+                }
+
+                builder.proxys(new Proxys(filepath));
+            }
 
             ServiceManager manager = new ServiceManager(builder.build());
             manager.run();
