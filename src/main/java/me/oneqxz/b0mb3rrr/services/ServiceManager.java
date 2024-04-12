@@ -29,6 +29,8 @@ public class ServiceManager {
 
     public void add()
     {
+        this.services.add(new Nyrest());
+        this.services.add(new Ovenpizza());
         this.services.add(new Pyatorochka());
         this.services.add(new Farpost());
         this.services.add(new Masterit());
