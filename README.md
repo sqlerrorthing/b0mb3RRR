@@ -11,6 +11,7 @@
 - ⬜️ приготовить блинчики
 
 ![Speed](https://raw.githubusercontent.com/oneqxz/b0mb3RRR/master/media/screenshot1.png)
+![Call spam](https://raw.githubusercontent.com/oneqxz/b0mb3RRR/master/media/screenshot2.png)
 ## Установка
 
 Установите бомбер на ваш девайс.
