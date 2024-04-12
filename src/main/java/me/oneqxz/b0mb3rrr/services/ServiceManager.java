@@ -67,7 +67,14 @@ public class ServiceManager {
     public void run()
     {
         for(IService service : this.services)
+        {
             executor.execute(new IServiceWorker(service, this.config));
+            try {
+                Thread.sleep(100L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         while (!executor.isTerminated()) {}
     }
