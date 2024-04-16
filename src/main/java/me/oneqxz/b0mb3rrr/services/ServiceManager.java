@@ -2,6 +2,7 @@ package me.oneqxz.b0mb3rrr.services;
 
 import lombok.extern.log4j.Log4j2;
 import me.oneqxz.b0mb3rrr.Config;
+import me.oneqxz.b0mb3rrr.gui.MainGui;
 import me.oneqxz.b0mb3rrr.services.impl.*;
 
 import java.util.LinkedList;
@@ -19,10 +20,10 @@ public class ServiceManager {
 
     public ServiceManager(Config config) {
         this.config = config;
-        log.info(STR."Запускаю спам на номер +\{config.getPhone()}");
+        MainGui.appendToConsole(STR."Запускаю спам на номер +\{config.getPhone()}");
 
         this.add();
-        log.info(STR."Добавлено \{services.size()} сервисов.");
+        MainGui.appendToConsole(STR."Добавлено \{services.size()} сервисов.");
 
         this.run();
     }

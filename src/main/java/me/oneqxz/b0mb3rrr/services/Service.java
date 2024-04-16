@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import me.oneqxz.b0mb3rrr.Config;
 import me.oneqxz.b0mb3rrr.data.Phone;
+import me.oneqxz.b0mb3rrr.gui.MainGui;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -48,12 +49,6 @@ public abstract class Service implements IService {
                 .build();
 
         @Nullable Proxy proxy = null;
-        if(config.getProxys() != null)
-        {
-            me.oneqxz.b0mb3rrr.data.proxy.Proxy s = config.getProxys().getRandomProxy();
-            if(s != null)
-                proxy = s.toJavaProxy();
-        }
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .proxy(proxy)
@@ -61,12 +56,12 @@ public abstract class Service implements IService {
 
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful())
-                log.error(STR."Неверный код состояния для сервиса \{this.getServiceName()} \{response.code()}\{config.isDebug() ? STR.": \{response.body().string().replace("\n", " ")}" : ""}");
+                MainGui.appendToConsole(STR."Неверный код состояния для сервиса \{this.getServiceName()} \{response.code()}\{config.isDebug() ? STR.": \{response.body().string().replace("\n", " ")}" : ""}");
 
             else
-                log.info(STR."Сервис \{this.getServiceName()} отправил код успешно");
+                MainGui.appendToConsole(STR."Сервис \{this.getServiceName()} отправил код успешно");
         } catch (IOException e) {
-            log.fatal(new RuntimeException(e));
+            MainGui.appendToConsole(String.valueOf(new RuntimeException(e)));
         }
     }
 }

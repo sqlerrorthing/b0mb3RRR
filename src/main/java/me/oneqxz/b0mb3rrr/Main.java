@@ -2,11 +2,12 @@ package me.oneqxz.b0mb3rrr;
 
 import lombok.extern.log4j.Log4j2;
 import me.oneqxz.b0mb3rrr.data.Phone;
-import me.oneqxz.b0mb3rrr.data.proxy.Proxys;
+import me.oneqxz.b0mb3rrr.gui.MainGui;
 import me.oneqxz.b0mb3rrr.services.ServiceManager;
 import me.oneqxz.b0mb3rrr.utils.StringPosition;
 import org.apache.commons.cli.*;
 
+import javax.swing.*;
 import java.io.File;
 
 @Log4j2
@@ -25,95 +26,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(banner);
 
-
-        Options options = new Options();
-        options.addOption(Option.builder("p")
-                .longOpt("phone")
-                .hasArg()
-                .argName("Номер телефона для спама")
-                .required()
-                .desc("Номер телефона на который будет приходить спам")
-                .build());
-
-        options.addOption(Option.builder("pr")
-                .longOpt("proxy")
-                .hasArg()
-                .argName("Путь к файлу с проксями")
-                .desc("Если вы хотите что бы запросы проходили через прокси")
-                .build());
-
-        options.addOption(Option.builder("d")
-                .longOpt("delay")
-                .hasArg()
-                .argName("Задежрка (в секундах)")
-                .desc("При повторной отправке будет задержка, по умолчанию 15 секунд.")
-                .build());
-
-        options.addOption(Option.builder("dbg")
-                .longOpt("debug")
-                .argName("Режим отладки")
-                .desc("Включать, если нужно больше информации.")
-                .build());
-
-        options.addOption(Option.builder("c")
-                .longOpt("cycles")
-                .argName("Циклы")
-                .desc("Сколько раз отправить код.")
-                .build());
-
-        options.addOption("h", "help", false, "Show help");
-
-        CommandLineParser parser = new DefaultParser();
-        Config.ConfigBuilder builder = new Config.ConfigBuilder();
-
-        try {
-            CommandLine cmd = parser.parse(options, args);
-            String phone = cmd.getOptionValue("p");
-            String delay = cmd.getOptionValue("d");
-            String cycles = cmd.getOptionValue("c");
-            String proxy = cmd.getOptionValue("pr");
-            builder.debug(cmd.hasOption("dbg"));
-
-            if(phone == null || phone.isEmpty())
-            {
-                log.fatal("Номер телефона должен быть указан!");
-                System.exit(-1);
-                return;
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new MainGui();
             }
-
-            builder.phone(new Phone(phone));
-
-            if(delay == null || delay.isEmpty())
-                builder.delay(15000);
-            else
-                builder.delay(Integer.parseInt(delay) * 1000L);
-
-            if(cycles == null || cycles.isEmpty())
-                builder.cycles(-1);
-            else
-                builder.cycles(Integer.parseInt(cycles));
-
-            if(proxy != null && !proxy.isEmpty())
-            {
-                File filepath = new File(proxy);
-                if(!filepath.exists() || filepath.isDirectory())
-                {
-                    log.fatal("Файл с прокси не найден!");
-                    System.exit(-1);
-                    return;
-                }
-
-                builder.proxys(new Proxys(filepath));
-            }
-
-            ServiceManager manager = new ServiceManager(builder.build());
-            manager.run();
-        } catch (ParseException e) {
-            HelpFormatter formatter = new HelpFormatter();
-            formatter.printHelp("b0mb3RRR", options);
-        }
-
-
+        });
     }
 
 }

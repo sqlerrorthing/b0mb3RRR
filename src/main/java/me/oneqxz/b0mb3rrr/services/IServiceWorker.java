@@ -13,19 +13,26 @@ public class IServiceWorker implements Runnable{
     @NonNull private IService service;
     @NonNull private Config config;
     private int cycle = 0;
+    public static boolean defaultIsZero = false;
 
     @Override
     public void run() {
         try {
             while (true) {
-                service.execute(config);
+                if (defaultIsZero && cycle != 0) {
+                    service.execute(config);
 
-                if (config.getCycles() != -1 && cycle >= config.getCycles())
-                    break;
+                    if (config.getCycles() != -1 && cycle >= config.getCycles())
+                        break;
 
-                cycle++;
+                    cycle++;
 
-                Thread.sleep(config.getDelay());
+                    Thread.sleep(config.getDelay());
+                } else {
+                    service.execute(config);
+
+                    Thread.sleep(config.getDelay());
+                }
             }
         } catch (InterruptedException e) {
             log.error(e);
